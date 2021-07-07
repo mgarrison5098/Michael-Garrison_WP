@@ -307,3 +307,32 @@ function front_page_on_pages_menu() {
 }
 
 add_action( 'admin_menu' , 'front_page_on_pages_menu' );
+
+/**
+ * Enable the custom logo customizer
+ */
+
+function config_custom_logo() {
+        
+    add_theme_support( 'custom-logo' );
+
+}
+add_action( 'after_setup_theme' , 'config_custom_logo' );
+
+function theme_get_custom_logo() {
+    
+    if ( has_custom_logo() ) {
+
+        $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) , 'full' );
+
+        echo '<a class="custom-logo-link" href="' . get_site_url() . '" >';
+        echo '<img class="custom-logo" src="' . esc_url( $logo[0] ) . '" width="' . $logo[1] . '" height="' . $logo[2] . '" alt="' . get_bloginfo( 'name' ) . '">';
+        echo "</a>";
+
+    } else {
+
+        echo '<a href="' . get_site_url() . '">' . get_bloginfo( 'name' ) . '</a>';
+        
+    }
+
+}

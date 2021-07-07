@@ -19,19 +19,29 @@
     </head>
     <body <?php body_class(); ?>>
         <header class="header" role="banner">
-            <div class="container">
-                <a href="<?php echo get_bloginfo( 'url' ); ?>" class="header__logo">
-                    <?php echo is_front_page() ? '<h1>' : ''; ?>
-                        <img src="<?php echo get_bloginfo( 'stylesheet_directory' ); ?>/img/logo.svg" onerror="this.src='<?php echo get_bloginfo( 'stylesheet_directory' ); ?>/img/logo.png'" alt="<?php echo get_bloginfo( 'title' ); ?>" />
-                    <?php echo is_front_page() ? '</h1>' : ''; ?>
-                </a>
-                <a href="#" class="nav-burger js-menu-toggle">
-                    <span class="nav-burger__line"></span>
-                    <span class="nav-burger__line"></span>
-                    <span class="nav-burger__line"></span>
-                </a>
-                <nav role="navigation" class="header__navigation">
-                    <?php wp_nav_menu(['theme_location' => 'header', 'menu_class' => 'nav nav--header']); ?>
-                </nav>
+
+            <div class="topnav" id="myTopnav">
+                <div class="wrap">
+                    <div class="logo">
+                        <!-- <?php echo theme_get_custom_logo(); ?> -->
+                        <div><span class="name">M<span class="drop">ichael</span> G<span class="drop">arrison</span></span> <span class="title">S<span class="drop">olutions</span> E<span class="drop">ngineer</span></span></div>
+                    </div>
+                    <?php wp_nav_menu(['theme_location' => 'header', 'menu_class' => 'menu']); ?>
+                    <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+                        HIIII
+                    </a>
+                </div>
+                <?php wp_nav_menu(['theme_location' => 'header', 'menu_class' => 'mobile']); ?>
+                
             </div>
+            <script>
+                function toggleNav() {
+                    var x = document.getElementById("myTopnav");
+                    if (x.className === "topnav") {
+                        x.className += " responsive";
+                    } else {
+                        x.className = "topnav";
+                    }
+                }
+            </script>
         </header>
